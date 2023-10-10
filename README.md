@@ -10,3 +10,4 @@ Following the process of https://threejs-journey.com
 4. React Three Fibre is a library that allows us to use Three JS with React
 5. Poimandres is an organisation that built react three fibre.
 6. DREI can be used to find prebuilt components for three js
+7. To create a new react app, you can run `npm create vite@latest` and then select react as the template
