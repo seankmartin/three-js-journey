@@ -1,4 +1,4 @@
-function loadTexture(gl: WebGL2RenderingContext, url: string) {
+export function loadTexture(gl: WebGL2RenderingContext, url: string) {
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
 

@@ -2,6 +2,7 @@ import { initShaderProgram, ShaderProgramInfo} from "./shader_program";
 import { fsSource, vsSource } from "./shaders";
 import { drawScene } from "./draw-scene";
 import { initBuffers } from "./init-buffers";
+import { loadTexture } from "./textures";
 
 main();
 
