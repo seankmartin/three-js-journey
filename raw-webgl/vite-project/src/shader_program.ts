@@ -2,11 +2,12 @@ export interface ShaderProgramInfo {
     program: WebGLProgram;
     attribLocations: {
         vertexPosition: number;
-        vertexColor: number;
+        textureCoord: number;
     };
     uniformLocations: {
         projectionMatrix: WebGLUniformLocation;
         modelViewMatrix: WebGLUniformLocation;
+        uSampler: WebGLUniformLocation;
     };
 }
 

@@ -35,15 +35,20 @@ function main() {
         program: shaderProgram,
         attribLocations: {
           vertexPosition: gl.getAttribLocation(shaderProgram, "aVertexPosition"),
-          vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
+          textureCoord: gl.getAttribLocation(shaderProgram, "aTextureCoord"),
         },
         uniformLocations: {
           projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix")!,
           modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix")!,
+          uSampler: gl.getUniformLocation(shaderProgram, "uSampler")!,
         },
       };
     
     const buffers = initBuffers(gl);
+    // Load texture
+    const texture = loadTexture(gl, "cubetexture.png");
+    // Flip image pixels into the bottom-to-top order that WebGL expects.
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
     let then = 0;
     function render(now: number) {
@@ -51,7 +56,7 @@ function main() {
         deltaTime = now - then;
         then = now;
         
-        drawScene(gl!, programInfo, buffers, cubeRotation);
+        drawScene(gl!, programInfo, buffers, texture, cubeRotation);
         cubeRotation += deltaTime;
         cubeRotation %= 2 * Math.PI;
 
