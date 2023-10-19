@@ -1,7 +1,7 @@
 import { ShaderProgramInfo } from "./shader_program";
 import { mat4 } from "gl-matrix";
 
-export function drawScene(gl: WebGL2RenderingContext, programInfo: ShaderProgramInfo, buffers: { [key: string]: WebGLBuffer | null }, squareRotation: number) {
+export function drawScene(gl: WebGL2RenderingContext, programInfo: ShaderProgramInfo, buffers: { [key: string]: WebGLBuffer | null }, cubeRotation: number) {
     gl.clearColor(0.0, 0.0, 0.0, 1.0); // Clear to black, fully opaque
     gl.clearDepth(1.0); // Clear everything
     gl.enable(gl.DEPTH_TEST); // Enable depth testing
@@ -44,14 +44,15 @@ export function drawScene(gl: WebGL2RenderingContext, programInfo: ShaderProgram
     mat4.rotate(
         modelViewMatrix,
         modelViewMatrix,
-        squareRotation,
-        [0, 0, 1],
+        cubeRotation,
+        [1, 1, 1],
     )
 
     // Tell WebGL how to pull out the positions from the position
     // buffer into the vertexPosition attribute.
     setPositionAttribute(gl, buffers, programInfo);
     setColorAttribute(gl, buffers, programInfo);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
 
     // Tell WebGL to use our program when drawing
     gl.useProgram(programInfo.program);
@@ -70,8 +71,9 @@ export function drawScene(gl: WebGL2RenderingContext, programInfo: ShaderProgram
 
     {
         const offset = 0;
-        const vertexCount = 4;
-        gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
+        const vertexCount = 36;
+        const type = gl.UNSIGNED_SHORT;
+        gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
     }
 }
 

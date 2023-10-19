@@ -5,7 +5,7 @@ import { initBuffers } from "./init-buffers";
 
 main();
 
-let squareRotation = 0.0;
+let cubeRotation = 0.0;
 let deltaTime = 0.0;
 
 function main() {
@@ -51,9 +51,9 @@ function main() {
         deltaTime = now - then;
         then = now;
         
-        drawScene(gl!, programInfo, buffers, squareRotation);
-        squareRotation += deltaTime;
-        squareRotation %= 2 * Math.PI;
+        drawScene(gl!, programInfo, buffers, cubeRotation);
+        cubeRotation += deltaTime;
+        cubeRotation %= 2 * Math.PI;
 
         requestAnimationFrame(render);
     }
