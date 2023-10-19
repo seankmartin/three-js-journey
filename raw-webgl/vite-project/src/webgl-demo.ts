@@ -5,6 +5,9 @@ import { initBuffers } from "./init-buffers";
 
 main();
 
+let squareRotation = 0.0;
+let deltaTime = 0.0;
+
 function main() {
     const canvas = document.querySelector("#glcanvas") as HTMLCanvasElement;
     // Initialize the GL context
@@ -41,6 +44,19 @@ function main() {
       };
     
     const buffers = initBuffers(gl);
-    drawScene(gl, programInfo, buffers);
+
+    let then = 0;
+    function render(now: number) {
+        now *= 0.001; // convert to seconds
+        deltaTime = now - then;
+        then = now;
+        
+        drawScene(gl!, programInfo, buffers, squareRotation);
+        squareRotation += deltaTime;
+        squareRotation %= 2 * Math.PI;
+
+        requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
 
 }
