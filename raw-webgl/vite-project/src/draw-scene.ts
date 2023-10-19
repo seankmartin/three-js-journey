@@ -44,6 +44,7 @@ export function drawScene(gl: WebGL2RenderingContext, programInfo: ShaderProgram
     // Tell WebGL how to pull out the positions from the position
     // buffer into the vertexPosition attribute.
     setPositionAttribute(gl, buffers, programInfo);
+    setColorAttribute(gl, buffers, programInfo);
 
     // Tell WebGL to use our program when drawing
     gl.useProgram(programInfo.program);
@@ -70,7 +71,7 @@ export function drawScene(gl: WebGL2RenderingContext, programInfo: ShaderProgram
 // Tell WebGL how to pull out the positions from the position
 // buffer into the vertexPosition attribute.
 function setPositionAttribute(gl: WebGL2RenderingContext, buffers: { [key: string]: WebGLBuffer | null }, programInfo: ShaderProgramInfo) {
-    const numComponents = 2; // pull out 2 values per iteration
+    const numComponents = 3; // pull out 2 values per iteration
     const type = gl.FLOAT; // the data in the buffer is 32bit floats
     const normalize = false; // don't normalize
     const stride = 0; // how many bytes to get from one set of values to the next
@@ -86,4 +87,24 @@ function setPositionAttribute(gl: WebGL2RenderingContext, buffers: { [key: strin
         offset,
     );
     gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+}
+
+// Tell WebGL how to pull out the colors from the color buffer
+// into the vertexColor attribute.
+function setColorAttribute(gl: WebGL2RenderingContext, buffers: { [key: string]: WebGLBuffer | null }, programInfo: ShaderProgramInfo) {
+    const numComponents = 4;
+    const type = gl.FLOAT;
+    const normalize = false;
+    const stride = 0;
+    const offset = 0;
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
+    gl.vertexAttribPointer(
+        programInfo.attribLocations.vertexColor,
+        numComponents,
+        type,
+        normalize,
+        stride,
+        offset,
+    );
+    gl.enableVertexAttribArray(programInfo.attribLocations.vertexColor);
 }

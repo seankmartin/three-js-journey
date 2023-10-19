@@ -2,6 +2,7 @@ export interface ShaderProgramInfo {
     program: WebGLProgram;
     attribLocations: {
         vertexPosition: number;
+        vertexColor: number;
     };
     uniformLocations: {
         projectionMatrix: WebGLUniformLocation;
