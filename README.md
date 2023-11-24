@@ -19,3 +19,8 @@ Following the process of https://threejs-journey.com
    4. This happens a lot on mobile devices.
    5. However, a pixel ratio of 2 is the most common - and can be a good default.
 10. To create a debug menu in three js, we can use `dat.gui`, or the newer lil-gui.
+11. To compress textures, we can use [TinyPNG](https://tinypng.com/), or better yet, [Squoosh](https://squoosh.app/), or basis.
+12. Some examples to find textures are at poliigon.com, 3dtextures.me, arroway-textures.ch, and texturehaven.com.
+13. To create your own texture, you could use blender, or substance painter, or quixel mixer, or substance designer, or photoshop.
+14. Matcaps at https://github.com/nidorx/matcaps or make them at matcap-studio kchapelier.com/matcap-studio/, or with blender by rendering a sphere with a material and putting it in the middle of the scene in a square image.
+15. You can host your project on vercel for free for non-commercial projects.
