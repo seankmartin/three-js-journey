@@ -2,6 +2,27 @@
 
 Following the process of https://threejs-journey.com
 
+## Creating a new project
+
+### Option 1: Use three js with vite
+
+1. Use `npm create vite@latest` to create a new vite project.
+   1. Follow the prompts to create a typescript project (vanilla).
+2. Add `three` to the dependencies in `package.json`.
+3. Add `@types/three` to the dev dependencies in `package.json`.
+4. Use `npm install` to install the dependencies.
+5. Add canvas to the html file. (e.g. <canvas class="webgl"></canvas>)
+
+Run with `npx vite`.
+
+### Option 2: Use react with react-three-fibre
+
+1. Use `npm create vite@latest` to create a new vite project.
+   1. Follow the prompts to create a typescript project with react.
+2. Add `react-three-fibre` to the dependencies in `package.json`.
+3. Add `@types/three` to the dev dependencies in `package.json`.
+4. Use `npm install` to install the dependencies.
+
 ## Most important things to remember
 
 1. Three JS is a library that allows us to create 3D scenes in the browser
