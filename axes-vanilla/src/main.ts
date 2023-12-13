@@ -11,6 +11,7 @@ interface DebugObject {
   hide: boolean
 }
 
+const LINEWIDTH = 5
 const MAX = 500
 const debugObject = {} as DebugObject
 debugObject.numSpheres = 30
@@ -22,7 +23,7 @@ debugObject.hide = false
 const gui = new GUI(
   {
     width: 300,
-    title: 'Parameters',
+    title: 'UI',
   },
 )
 const folder = gui.addFolder('Parameters')
@@ -72,26 +73,28 @@ window.addEventListener('resize', () => {
 })
 
 const axesHelper = new THREE.AxesHelper(18)
+const axesHelperMaterial = axesHelper.material as THREE.LineBasicMaterial
+axesHelperMaterial.linewidth = LINEWIDTH
 axesHelper.position.set(-8, -8, -8)
 scene.add(axesHelper)
 
 const sphereGeometry = new THREE.SphereGeometry(0.2, 32, 32)
 
-const xLineMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 })
+const xLineMaterial = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: LINEWIDTH })
 const xLinePoints = [
   new THREE.Vector3(0, 0, 0),
   new THREE.Vector3(1, 0, 0),
 ]
 const xLineGeometry = new THREE.BufferGeometry().setFromPoints(xLinePoints)
 
-const yLineMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00 })
+const yLineMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00, linewidth: LINEWIDTH })
 const yLinePoints = [
   new THREE.Vector3(0, 0, 0),
   new THREE.Vector3(0, 1, 0),
 ]
 const yLineGeometry = new THREE.BufferGeometry().setFromPoints(yLinePoints)
 
-const zLineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff })
+const zLineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff, linewidth: LINEWIDTH })
 const zLinePoints = [
   new THREE.Vector3(0, 0, 0),
   new THREE.Vector3(0, 0, 1),
