@@ -3,12 +3,15 @@
 This project follows the process outlined in [Three JS Journey](https://threejs-journey.com).
 
 ## Table of Contents
-1. [Creating a New Project](#creating-a-new-project)
-   - [Option 1: Use Three JS with Vite](#option-1-use-three-js-with-vite)
-   - [Option 2: Use React with React-Three-Fibre](#option-2-use-react-with-react-three-fibre)
-2. [Key Concepts](#key-concepts)
-3. [Texture Compression and Creation](#texture-compression-and-creation)
-4. [Hosting](#hosting)
+- [Three JS Journey](#three-js-journey)
+  - [Table of Contents](#table-of-contents)
+  - [Creating a New Project](#creating-a-new-project)
+    - [Option 1: Use Three JS with Vite](#option-1-use-three-js-with-vite)
+    - [Option 2: Use React with React-Three-Fibre](#option-2-use-react-with-react-three-fibre)
+  - [Key Concepts](#key-concepts)
+  - [Texture Compression and Creation](#texture-compression-and-creation)
+  - [Hosting](#hosting)
+    - [Hosting on Vercel](#hosting-on-vercel)
 
 ## Creating a New Project
 
@@ -47,3 +50,16 @@ To run the project, use `npx vite`.
 
 ## Hosting
 - Host your project on [Vercel](https://vercel.com/) for free for non-commercial projects.
+- Netlify and GitHub Pages are other options for hosting.
+
+### Hosting on Vercel
+
+1. Install the Vercel CLI with `npm install -g vercel`. Or, install it locally with `npm install --save-dev vercel`.
+2. Run `vercel login` to log in to Vercel.
+3. Add a new deploy command to `package.json`:
+```json
+"scripts": {
+  "deploy": "vercel --prod"
+}
+```
+4. Run `npm run deploy` to deploy the project.

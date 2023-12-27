@@ -11,7 +11,7 @@ interface DebugObject {
   hide: boolean
 }
 
-const LINEWIDTH = 5
+const LINEWIDTH = 100
 const MAX = 500
 const debugObject = {} as DebugObject
 debugObject.numSpheres = 30
