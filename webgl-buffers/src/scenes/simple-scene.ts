@@ -20,7 +20,6 @@ export class SimpleScene implements SceneInfo {
     if (!this.shaderProgram) {
       throw new Error("Unable to create shader program");
     }
-    this.objects.cube = createCube(gl);
     this.locations = {
       vertexPosition: gl.getAttribLocation(
         this.shaderProgram,
@@ -49,12 +48,14 @@ export class SimpleScene implements SceneInfo {
       const perspectiveMatrix = createPerspectiveMatrix(gl);
       const modelViewMatrix = mat4.create();
       translate(modelViewMatrix, 0, 0, -6);
-      rotate(modelViewMatrix, 10, [1, 1, 1]);
-      scale(modelViewMatrix, 0.5, 0.5, 0.5);
+      rotate(modelViewMatrix, 1.1, [1, 1, 1]);
+      scale(modelViewMatrix, 1.5, 1.5, 1.5);
+      
+      this.objects.cube = createCube(gl);
 
       setPositionAttribute(
         gl,
-        this.objects.cube.positions,
+        this.objects.cube.position,
         this.locations.vertexPosition
       );
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.objects.cube.indices);
