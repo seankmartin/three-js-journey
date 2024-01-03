@@ -1,11 +1,14 @@
-export const frag = `
+export const frag = `#version 300 es
+precision mediump float;
+
+out vec4 fragColor;
 void main() {
-    gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
+    fragColor = vec4(1.0, 1.0, 0.0, 1.0);
 }
 `;
 
-export const vert = `
-attribute vec3 aVertexPosition;
+export const vert = `#version 300 es
+in vec3 aVertexPosition;
 
 uniform mat4 uModelViewMatrix;
 uniform mat4 uProjectionMatrix;
