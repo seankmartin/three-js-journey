@@ -96,6 +96,17 @@ export class SimpleScene implements SceneInfo {
 
       const offset = 0;
       const vertexCount = 36;
+      gl.useProgram(offscreenProgram);
+      gl.uniformMatrix4fv(
+        offscreenLocations.projectionMatrix,
+        false,
+        perspectiveMatrix
+      );
+      gl.uniformMatrix4fv(
+        offscreenLocations.modelViewMatrix,
+        false,
+        modelViewMatrix
+      );
       frameBuffer.activate();
       gl.clearColor(0.0, 0.0, 0.0, 1.0);
       gl.clearDepth(1.0);
@@ -103,6 +114,17 @@ export class SimpleScene implements SceneInfo {
       gl.drawElements(gl.TRIANGLES, vertexCount, gl.UNSIGNED_SHORT, offset);
 
       frameBuffer.deactivate();
+      gl.useProgram(this.shaderProgram);
+      gl.uniformMatrix4fv(
+        this.locations.projectionMatrix,
+        false,
+        perspectiveMatrix
+      );
+      gl.uniformMatrix4fv(
+        this.locations.modelViewMatrix,
+        false,
+        modelViewMatrix
+      );
       gl.clearColor(0.0, 0.0, 0.0, 1.0);
       gl.clearDepth(1.0);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
