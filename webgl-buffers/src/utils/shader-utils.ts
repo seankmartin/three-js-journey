@@ -65,11 +65,8 @@ function loadShader(gl: WebGL2RenderingContext, type: number, source: string) {
     throw new Error(`Unable to create shader of type ${type}`);
   }
 
-  // Read the source code from the file
-  const sourceCode = fs.readFileSync(getShaderPath(source), 'utf8');
-
   // Send the source to the shader object
-  gl.shaderSource(shader, sourceCode);
+  gl.shaderSource(shader, source);
 
   // Compile the shader program
   gl.compileShader(shader);
@@ -84,12 +81,4 @@ function loadShader(gl: WebGL2RenderingContext, type: number, source: string) {
   }
 
   return shader;
-}
-
-export function getShaderPath(name: string) {
-  const path = `../../assets/shaders/${name}`
-  if (!fs.existsSync(path)) {
-    throw new Error(`Unable to find shader source file ${path}`);
-  }
-  return path;
 }
