@@ -15,12 +15,22 @@ This project follows the process outlined in [Three JS Journey](https://threejs-
 
 ## Creating a New Project
 
+```bash
+npm create vite@latest my-app-name -- --template vanilla-ts
+npm install --save three
+npm install --save-dev @types/three
+npm install --save lil-gui
+cd my-app-name
+npm install
+npx vite
+```
+
 ### Option 1: Use Three JS with Vite
 1. Create a new Vite project with `npm create vite@latest`, and select a TypeScript project (vanilla).
-2. Add `three` to the dependencies in `package.json`.
-3. Add `@types/three` to the dev dependencies in `package.json`.
+2. Add `three` to the dependencies in `package.json` (`npm install --save three`).
+3. Add `@types/three` to the dev dependencies in `package.json` (`npm install --save-dev @types/three`).
 4. Run `npm install` to install the dependencies.
-5. Add a canvas to the HTML file (e.g., `<canvas class="webgl"></canvas>`).
+5. Add a canvas to the HTML file in the body (e.g., `<canvas class="webgl"></canvas>`).
 
 To run the project, use `npx vite`.
 
