@@ -3,6 +3,7 @@
 This project follows the process outlined in [Three JS Journey](https://threejs-journey.com).
 
 ## Table of Contents
+
 - [Three JS Journey](#three-js-journey)
   - [Table of Contents](#table-of-contents)
   - [Creating a New Project](#creating-a-new-project)
@@ -17,15 +18,16 @@ This project follows the process outlined in [Three JS Journey](https://threejs-
 
 ```bash
 npm create vite@latest my-app-name -- --template vanilla-ts
+cd my-app-name
 npm install --save three
 npm install --save-dev @types/three
 npm install --save lil-gui
-cd my-app-name
 npm install
 npx vite
 ```
 
 ### Option 1: Use Three JS with Vite
+
 1. Create a new Vite project with `npm create vite@latest`, and select a TypeScript project (vanilla).
 2. Add `three` to the dependencies in `package.json` (`npm install --save three`).
 3. Add `@types/three` to the dev dependencies in `package.json` (`npm install --save-dev @types/three`).
@@ -35,12 +37,14 @@ npx vite
 To run the project, use `npx vite`.
 
 ### Option 2: Use React with React-Three-Fibre
+
 1. Create a new Vite project with `npm create vite@latest`, and select a TypeScript project with React.
 2. Add `react-three-fibre` to the dependencies in `package.json`.
 3. Add `@types/three` to the dev dependencies in `package.json`.
 4. Run `npm install` to install the dependencies.
 
 ## Key Concepts
+
 - Three JS is a library for creating 3D scenes in the browser.
 - Vite is used to create a dev server.
 - NVM can be used to switch Node.js versions.
@@ -55,12 +59,14 @@ To run the project, use `npx vite`.
 - To keep shaders in a separate file, use the `glslify` package. This allows you to write shaders in a separate file and import them into your JavaScript files. Alternatively, you can use the `glsl` package to write shaders in JavaScript files. Becaause we usually use `vite` to create a project, we can use the `vite-plugin-glsl` to import GLSL files directly into our JavaScript files.
 
 ## Texture Compression and Creation
+
 - Compress textures using [TinyPNG](https://tinypng.com/), [Squoosh](https://squoosh.app/), or Basis.
 - Find textures at Poliigon, 3D Textures, Arroway Textures, and Texture Haven.
 - Create your own textures using Blender, Substance Painter, Quixel Mixer, Substance Designer, or Photoshop.
 - Find or create Matcaps at [Nidorx's GitHub](https://github.com/nidorx/matcaps), [Matcap Studio](https://kchapelier.com/matcap-studio/), or with Blender.
 
 ## Hosting
+
 - Host your project on [Vercel](https://vercel.com/) for free for non-commercial projects.
 - Netlify and GitHub Pages are other options for hosting.
 
@@ -69,9 +75,11 @@ To run the project, use `npx vite`.
 1. Install the Vercel CLI with `npm install -g vercel`. Or, install it locally with `npm install --save-dev vercel`.
 2. Run `vercel login` to log in to Vercel.
 3. Add a new deploy command to `package.json`:
+
 ```json
 "scripts": {
   "deploy": "vercel --prod"
 }
 ```
+
 4. Run `npm run deploy` to deploy the project.
