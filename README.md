@@ -57,6 +57,8 @@ To run the project, use `npx vite`.
 - GSAP is a library for animations in Three JS. To animate meshes, you can use the `requestAnimationFrame` function or GSAP. GSAP is recommended for more complex animations.
 - Cannon JS is a physics library for Three JS. It can be used to create realistic physics simulations. Cannon-es is a more maintained version of Cannon JS. However, AmmoJS is recommended for physics simulations in Three JS.
 - To keep shaders in a separate file, use the `glslify` package. This allows you to write shaders in a separate file and import them into your JavaScript files. Alternatively, you can use the `glsl` package to write shaders in JavaScript files. Becaause we usually use `vite` to create a project, we can use the `vite-plugin-glsl` to import GLSL files directly into our JavaScript files.
+- You can make a blank npm project by using `npm init -y`.
+- `tailwind-css` is a utility-first CSS framework. It can be used to create responsive designs quickly.
 
 ## Texture Compression and Creation
 
