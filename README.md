@@ -13,6 +13,202 @@ This project follows the process outlined in [Three JS Journey](https://threejs-
   - [Texture Compression and Creation](#texture-compression-and-creation)
   - [Hosting](#hosting)
     - [Hosting on Vercel](#hosting-on-vercel)
+  
+## Using react-three-fiber
+
+### Creating a New Project
+
+```bash
+npm create vite@latest app # React, typescript-SWC
+cd app
+npm install
+npm run dev
+```
+
+### Adding a canvas object to the app.tsx file
+
+```tsx
+import { Canvas } from '@react-three/fiber';
+
+function App () {
+  return (
+    <Canvas>
+      <...>
+    </Canvas>
+  );
+}
+```
+
+### Adding a mesh object to the canvas
+
+```tsx
+import { Canvas } from '@react-three/fiber';
+
+function App () {
+  return (
+    <Canvas>
+      <mesh>
+        <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshBasicMaterial attach="material" color="hotpink" />
+      </mesh>
+    </Canvas>
+  );
+}
+
+export default App;
+```
+
+### Minimal setup
+
+1. Create a new Vite project with React and TypeScript.
+2. Delete everything from src, except for the `vite-env.d.ts` file.
+3. Create a new file called `app.tsx` in the src folder.
+4. Add the following code to the `app.tsx` file:
+
+    ```tsx
+    import { Canvas } from '@react-three/fiber';
+
+    function App () {
+      return (
+        <Canvas>
+          <mesh>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshBasicMaterial attach="material" color="hotpink" />
+          </mesh>
+        </Canvas>
+      );
+    }
+    export default App;
+    ```
+
+5. Move the `index.html` file to the `src` folder. Populate it with the following code:
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>First React Three Fiber Application</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="module" src="./index.tsx"></script></body>
+    </html>
+    ```
+
+6. Create a `styles.css` file in the `src` folder. Populate it as so:
+
+    ```css
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body,
+    #root {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f0f0f0;
+    }
+    ```
+
+7. Create a `index.tsx` file in the `src` folder. Populate it with the following code:
+
+    ```tsx
+    import "./styles.css";
+    import { createRoot } from "react-dom/client";
+    import App from "./App.jsx";
+
+    createRoot(document.getElementById("root")!).render(<App />);
+    ```
+
+8. Set the default vite config like so:
+
+    ```typescript
+    import react from '@vitejs/plugin-react-swc'
+    import { transformWithEsbuild } from 'vite'
+    import restart from 'vite-plugin-restart'
+
+    export default {
+        root: 'src/',
+        publicDir: '../public/',
+        plugins:
+        [
+            // Restart server on static/public file change
+            restart({ restart: [ '../public/**', ] }),
+
+            // React support
+            react(),
+
+            // .js file support as if it was JSX
+            {
+                name: 'load+transform-js-files-as-jsx',
+                async transform(code, id)
+                {
+                    if (!id.match(/src\/.*\.js$/))
+                        return null
+
+                    return transformWithEsbuild(code, id, {
+                        loader: 'jsx',
+                        jsx: 'automatic',
+                    });
+                },
+            },
+        ],
+        server:
+        {
+            host: true, // Open to local network and display URL
+            open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
+        },
+        build:
+        {
+            outDir: '../dist', // Output in the dist/ folder
+            emptyOutDir: true, // Empty the folder first
+            sourcemap: true // Add sourcemap
+        },
+    }
+    ```
+
+    Also install the following packages:
+
+    ```bash
+    npm install --save-dev vite-plugin-restart
+    npm install @react-three/fiber
+    npm i --save-dev @types/node
+    ```
+
+9. Optionally, it can be a good idea to customise the canvas. That would be something like:
+
+    ```tsx
+    <Canvas
+          gl={{
+            antialias: true,
+            toneMapping: THREE.ACESFilmicToneMapping,
+          }}
+          camera={{
+            fov: 45,
+            near: 0.1,
+            far: 200,
+            position: [3, 2, 6],
+          }}
+        >
+    ```
+
+### Drei
+
+[Drei](https://github.com/pmndrs/drei) is a collection of useful helpers and abstractions for react-three-fiber.
+This is where you can find prebuilt components for Three JS - which speeds up the development process.
+
+```bash
+npm install @react-three/drei
+```
 
 ## Creating a New Project
 
