@@ -124,7 +124,7 @@ export default App;
     ```tsx
     import "./styles.css";
     import { createRoot } from "react-dom/client";
-    import App from "./App.jsx";
+    import App from "./App";
 
     createRoot(document.getElementById("root")!).render(<App />);
     ```
@@ -184,7 +184,7 @@ export default App;
     npm i --save-dev @types/node
     ```
 
-9. Optionally, it can be a good idea to customise the canvas. That would be something like:
+9. Optionally, it can be a you can customise the canvas. That would be something like (not gl params here are actually the default):
 
     ```tsx
     <Canvas
@@ -201,6 +201,29 @@ export default App;
         >
     ```
 
+10. To get going quickly, another good idea are to add to objects to a `Stage` in drei.
+11. If you want, drei offers a number of background images called `Environment` that can be used to light the scene. See https://github.com/pmndrs/drei/blob/master/src/helpers/environment-assets.ts for a list of available presets.
+
+    ```tsx
+    import { Environment, Stage } from '@react-three/drei';
+
+    function App () {
+      return (
+        <Canvas>
+          <ambientLight intensity={0.3} />
+          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+          <Stage>
+            <Environment background preset="sunset" />
+          </Stage>
+        </Canvas>
+      );
+    }
+    ```
+
+12. Leva is a possible debug UI to use along with three js react. But using the react dev tools might be lower lift.
+13. Monitoring in react three fiber is good with [r3f-perf](https://github.com/utsuboco/r3f-perf): `npm install --save-dev r3f-perf`.
+14. Look at gltf to react three fiber https://github.com/pmndrs/gltfjsx. useGLTF is a hook that can be used to load gltf files. useAnimations is a hook that can be used to animate gltf files.
+
 ### Drei
 
 [Drei](https://github.com/pmndrs/drei) is a collection of useful helpers and abstractions for react-three-fiber.
@@ -209,6 +232,8 @@ This is where you can find prebuilt components for Three JS - which speeds up th
 ```bash
 npm install @react-three/drei
 ```
+
+See components at [Drei](https://drei.pmnd.rs/).
 
 ## Creating a New Project
 
@@ -255,6 +280,7 @@ To run the project, use `npx vite`.
 - To keep shaders in a separate file, use the `glslify` package. This allows you to write shaders in a separate file and import them into your JavaScript files. Alternatively, you can use the `glsl` package to write shaders in JavaScript files. Becaause we usually use `vite` to create a project, we can use the `vite-plugin-glsl` to import GLSL files directly into our JavaScript files.
 - You can make a blank npm project by using `npm init -y`.
 - `tailwind-css` is a utility-first CSS framework. It can be used to create responsive designs quickly.
+- Troika is a library for creating 3D text in Three JS (https://github.com/protectwise/troika/tree/main/packages/troika-three-text). It can be used to create 3D text with custom fonts and styles.
 
 ## Texture Compression and Creation
 
@@ -262,6 +288,13 @@ To run the project, use `npx vite`.
 - Find textures at Poliigon, 3D Textures, Arroway Textures, and Texture Haven.
 - Create your own textures using Blender, Substance Painter, Quixel Mixer, Substance Designer, or Photoshop.
 - Find or create Matcaps at [Nidorx's GitHub](https://github.com/nidorx/matcaps), [Matcap Studio](https://kchapelier.com/matcap-studio/), or with Blender.
+
+## Finding Models
+
+- Find models at Sketchfab, TurboSquid, CGTrader, and Free3D.
+- For pmdrs specific models, use https://market.pmnd.rs/, details at https://github.com/pmndrs/market.
+- Sample gltf models can be found at https://threejs.org/examples/#webgl_loader_gltf or https://github.com/KhronosGroup/glTF-Sample-Models.
+- Kenny has a number of free models at https://kenney.nl/assets?q=3d. These are usually low poly models.
 
 ## Hosting
 
@@ -281,3 +314,7 @@ To run the project, use `npx vite`.
 ```
 
 4. Run `npm run deploy` to deploy the project.
+
+## Shadow issues
+
+If you run into issues with shadows, on very round objects, try adjusting the shadow bias. This is performed by modifying the light object.
