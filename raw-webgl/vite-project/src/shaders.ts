@@ -19,6 +19,8 @@ export const fsSource = `
   uniform sampler2D uSampler;
 
   void main(void) {
+    mediump float color = gl_FrontFacing ? 1.0 : 0.0;
+    // gl_FragColor = vec4(1.0, color, color, 1.0);
     gl_FragColor = texture2D(uSampler, vTextureCoord);
   }
 `;

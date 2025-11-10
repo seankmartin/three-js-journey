@@ -1,4 +1,6 @@
-export function initBuffers(gl: WebGL2RenderingContext): { [key: string]: WebGLBuffer | null } {
+export function initBuffers(gl: WebGL2RenderingContext): {
+  [key: string]: WebGLBuffer | null;
+} {
   const positionBuffer = initPositionBuffer(gl);
   const textureCoordBuffer = initTextureBuffer(gl);
   const indexBuffer = initIndexBuffer(gl);
@@ -22,19 +24,19 @@ function initPositionBuffer(gl: WebGL2RenderingContext) {
   const positions = [
     // Front face
     -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0,
-  
+
     // Back face
     -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0, -1.0,
-  
+
     // Top face
     -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0,
-  
+
     // Bottom face
     -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0,
-  
+
     // Right face
     1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0,
-  
+
     // Left face
     -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0,
   ];
